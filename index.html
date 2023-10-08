@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./style.css" rel="stylesheet" type="text/css" />
+    <title>Vite App</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>마우스 이벤트</h1>
+      <article>
+        <section>
+          <h2>mouseover/mouseout</h2>
+          <p>이벤트 버블링이 생긴다.</p>
+          <div class="out_div" id="out_div">
+            <span>out_div</span>
+            <div id="inner_div">inner_div</div>
+          </div>
+          <button class="clearbtn" id="clearbtn">clear</button>
+          <br />
+          >> log
+          <div class="result" id="mouseover-result"></div>
+        </section>
+        <section>
+          <h2>mouseenter/mouseleave</h2>
+          <p>이벤트 버블링이 생기지 않는다.</p>
+          <div class="out_div" id="non-bubble-out_div">
+            <span>non-bubble-out_div</span>
+            <div id="inner_div">inner_div</div>
+          </div>
+          <button class="clearbtn" id="non-bubble-clearbtn">clear</button>
+          <br />
+          >> log
+          <div class="result" id="mouseenter-result"></div>
+        </section>
+        <section>
+          <h2>이벤트 버블링(Double Click Event)</h2>
+          <p>이벤트 버블링 로직을 알아보자</p>
+          <div class="parent_div" id="bubbling-ancestor-div">
+            <span>ancestor</span>
+            <div class="out_div" id="bubbling-parent-div">
+              <span>parent</span>
+              <div id="inner_div" class="bubbling-child-div">child</div>
+            </div>
+          </div>
+          <button class="clearbtn" id="bubbling-clearbtn">clear</button>
+          <br />
+          >> log
+          <div class="result" id="bubbling-result"></div>
+        </section>
+        <section>
+          <h2>이벤트 캡쳐링(Mouse Down Event)</h2>
+          <p>이벤트 캡쳐링 로직을 알아보자</p>
+          <div class="parent_div" id="capturing-ancestor-div">
+            <span>ancestor</span>
+            <div class="out_div" id="capturing-parent-div">
+              <span>parent</span>
+              <div id="inner_div" class="capturing-child-div">child</div>
+            </div>
+          </div>
+          <button class="clearbtn" id="capturing-clearbtn">clear</button>
+          <br />
+          >> log
+          <div class="result" id="capturing-result"></div>
+        </section>
+      </article>
+      <h1>키보드 이벤트</h1>
+      <article>
+        <section>
+          <h2>Key Up 이벤트</h2>
+          <p>누르고 있던 키를 놓았을 때 한번만 발생한다.</p>
+          <input type="text" id="keyupInput" />
+          <button class="clearbtn" id="keyUp-clearbtn">clear</button>
+          <br />
+          >> log
+          <div class="result" id="keyUp-result"></div>
+        </section>
+        <section>
+          <h2>Key Down 이벤트</h2>
+          <p>
+            모든 키를 눌렀을 때 발생한다. 이 때, 문자, 숫자, 특수 문자, enter
+            키를 눌렀을 때만 연속적으로 발생하고, 나머지의 경우는 한번만 발생함
+          </p>
+          <input type="text" id="keyDownInput" />
+          <button class="clearbtn" id="keyDown-clearbtn">clear</button>
+          <br />
+          >> log
+          <div class="result" id="keyDown-result"></div>
+        </section>
+        <div style="display: flex; flex-direction: column">
+          <select id="game-select">
+            <option value="1">Upper Game</option>
+            <option value="2">Lower Game</option>
+          </select>
+          <section>
+            <h2>
+              KeyDown, KeyUp 이벤트를 활용한 게임 캐릭터 방향 및 달리기 기능
+            </h2>
+            <p>방향키로 움직이며, Shift를 누르면 빨라진다.</p>
+            <div id="game-board">
+              START HERE!
+              <div id="game-bug"></div>
+            </div>
+          </section>
+          <section>
+            <h2>좀 더 부드럽게 구현해보기 (feat.Canvas)</h2>
+            <p>방향키로 움직이며, Shift를 누르면 빨라진다.</p>
+            <canvas id="game-canvas" width="400" height="200"></canvas>
+          </section>
+        </div>
+      </article>
+      <h1>포커스 이벤트</h1>
+      <article>
+        <section>
+          <h2>focusin/focusout</h2>
+          <p>이벤트 버블링이 발생한다.</p>
+          <div class="parent_div" id="focusin-parent-div">
+            parent div
+            <div class="out_div" id="focusin-out-div">
+              child div
+              <input type="text" id="focusinInput" />
+            </div>
+          </div>
+          <div id="focusin-validation-msg"></div>
+          <button class="clearbtn" id="focusin-clearbtn">clear</button>
+          <br />
+          >> log
+          <div class="result" id="focusin-result"></div>
+        </section>
+        <section>
+          <h2>focus/blur</h2>
+          <p>이벤트 버블링이 발생하지 않는다.</p>
+          <div class="parent_div" id="focus-parent-div">
+            parent div
+            <div class="out_div" id="focus-out-div">
+              child div
+              <input type="text" id="focusInput" />
+            </div>
+          </div>
+          <div id="validation-msg"></div>
+          <button class="clearbtn" id="focus-clearbtn">clear</button>
+          <br />
+          >> log
+          <div class="result" id="focus-result"></div>
+        </section>
+      </article>
+    </div>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>

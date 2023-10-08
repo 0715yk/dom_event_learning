@@ -1,0 +1,100 @@
+body {
+  margin: 0;
+  padding: 50px;
+}
+
+article {
+  display: flex;
+  gap: 40px;
+}
+
+.out_div {
+  width: 150px;
+  height: 150px;
+  background-color: blue;
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+
+.out_div > span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: white;
+}
+
+#inner_div {
+  width: 70px;
+  height: 70px;
+  background-color: yellow;
+}
+
+.result {
+  height: 200px;
+  width: 300px;
+  overflow: scroll;
+  background: black;
+  color: white;
+}
+
+.parent_div {
+  width: 210px;
+  height: 210px;
+  background-color: red;
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+
+.parent_div > span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: white;
+}
+
+h1 {
+  background: pink;
+  color: white;
+  text-align: center;
+  padding: 5px 0;
+}
+
+section > p {
+  max-width: 300px;
+}
+
+#game-board {
+  position: relative;
+  width: 300px;
+  height: 30px;
+  background: limegreen;
+  display: flex;
+  align-items: center;
+  color: white;
+  font-size: 20px;
+  padding: 0 15px;
+}
+
+#game-board > div {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: blue;
+  position: absolute;
+  top: 0;
+  left: 140px;
+}
+
+#game-canvas {
+  background: yellow;
+}
+
+#game-select {
+  width: 100px;
+}
+
+.invalid {
+  border: 3px solid red;
+}
