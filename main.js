@@ -54,7 +54,7 @@ function templateFunc(event, name) {
     function () {
       div4.insertAdjacentHTML("beforeend", `<div>ancestor-div</div>`);
     },
-    true
+    name === "capturing" ? true : false
   );
 
   div2.addEventListener(
@@ -62,7 +62,7 @@ function templateFunc(event, name) {
     function () {
       div4.insertAdjacentHTML("beforeend", `<div>parent-div</div>`);
     },
-    true
+    name === "capturing" ? true : false
   );
 
   div3.addEventListener(
@@ -70,7 +70,7 @@ function templateFunc(event, name) {
     function () {
       div4.insertAdjacentHTML("beforeend", `<div>child-div</div>`);
     },
-    true
+    name === "capturing" ? true : false
   );
 
   div5.addEventListener("click", () => {
@@ -119,6 +119,9 @@ function templateInputFuncForFocus(event, className, name, msgTag) {
         const spanElement = document.querySelector(msgTag);
         spanElement.textContent = "";
       }
+    } else if (event === "input" || event === "change") {
+      div4.insertAdjacentHTML("beforeend", `<div>${e.target.value}</div>`);
+      return;
     }
     div4.insertAdjacentHTML("beforeend", `<div>${event}</div>`);
   });
@@ -141,6 +144,20 @@ templateInputFuncForFocus(
   "#focusinInput",
   "focusin",
   "#focusin-validation-msg"
+);
+
+templateInputFuncForFocus(
+  "input",
+  "#inputInput",
+  "input",
+  "#input-validation-msg"
+);
+
+templateInputFuncForFocus(
+  "change",
+  "#changeInput",
+  "change",
+  "#change-validation-msg"
 );
 
 let bugDirection = {
@@ -375,4 +392,116 @@ focusInDiv2.addEventListener("focusout", (event) => {
 
 clearbtn2.addEventListener("click", (event) => {
   focusInResult.innerHTML = "";
+});
+
+const inputDiv1 = document.getElementById("input-parent-div");
+const inputDiv2 = document.getElementById("input-out-div");
+const inputResult = document.getElementById("input-result");
+
+inputDiv1.addEventListener("input", (event) => {
+  inputResult.insertAdjacentHTML(
+    "beforeend",
+    `<div>input from parent div</div>`
+  );
+});
+
+inputDiv2.addEventListener("input", (event) => {
+  inputResult.insertAdjacentHTML(
+    "beforeend",
+    `<div>input from child div</div>`
+  );
+});
+
+clearbtn2.addEventListener("click", (event) => {
+  inputResult.innerHTML = "";
+});
+
+const changeDiv1 = document.getElementById("change-parent-div");
+const changeDiv2 = document.getElementById("change-out-div");
+const changeResult = document.getElementById("change-result");
+
+changeDiv1.addEventListener("change", (event) => {
+  changeResult.insertAdjacentHTML(
+    "beforeend",
+    `<div>change from parent div</div>`
+  );
+});
+
+changeDiv2.addEventListener("change", (event) => {
+  changeResult.insertAdjacentHTML(
+    "beforeend",
+    `<div>change from child div</div>`
+  );
+});
+
+clearbtn2.addEventListener("click", (event) => {
+  changeResult.innerHTML = "";
+});
+
+document.addEventListener("DOMContentLoaded", (e) => {
+  const domloadedEl = document.querySelector("#domloaded");
+  const today = new Date();
+  console.log(document.readyState);
+  domloadedEl.innerHTML = `DOMContentLoaded at ${today.getTime()} 밀리초 && ReadyStage : ${
+    document.readyState
+  }`;
+});
+
+document.addEventListener("readystatechange", () => {
+  const readystateEl = document.querySelector("#readystate");
+  const today = new Date();
+  readystateEl.textContent = `ReadyState: ${
+    document.readyState
+  } at ${today.getTime()} 밀리초`;
+});
+
+window.addEventListener("load", () => {
+  const loadEl = document.querySelector("#load");
+  const today = new Date();
+  loadEl.textContent = `Loaded at ${today.getTime()} 밀리초`;
+});
+
+const log1 = document.getElementById("log1");
+const log2 = document.getElementById("log2");
+
+function logReset(event) {
+  log1.textContent = `Form reset! Timestamp: ${event.timeStamp}`;
+}
+
+function logSubmit(event) {
+  event.preventDefault();
+  log2.textContent = `Form submit! Timestamp: ${event.timeStamp}`;
+}
+const form = document.getElementById("form");
+
+const submitBtn = document.getElementById("submit-btn");
+form.addEventListener("reset", logReset);
+submitBtn.addEventListener("click", logSubmit);
+
+let resizeFlag = false;
+let scrollFlag = false;
+
+const resizeBtn = document.getElementById("resizeBtn");
+const scrollBtn = document.getElementById("scrollBtn");
+
+window.addEventListener("resize", function () {
+  if (resizeFlag) alert("resize 이벤트 발생 : window 객체에서만 발생한다.");
+});
+
+window.addEventListener("scroll", function () {
+  if (scrollFlag) alert("scroll 이벤트 발생");
+});
+
+resizeBtn.addEventListener("click", function () {
+  resizeFlag = !resizeFlag;
+  resizeBtn.textContent = resizeFlag
+    ? "Resize 이벤트 Status : On "
+    : "Resize 이벤트 Status : Off";
+});
+
+scrollBtn.addEventListener("click", function () {
+  scrollFlag = !scrollFlag;
+  scrollBtn.textContent = scrollFlag
+    ? "Scroll 이벤트 Status : On "
+    : "Scroll 이벤트 Status : Off";
 });

@@ -9,6 +9,45 @@
   </head>
   <body>
     <div id="app">
+      <h1>DOM 문서 + a 어디쯤 왔니?</h1>
+      <h3>
+        : 순서상 `readyState : interactive` => DOMContentLoaded => `readyState :
+        complete` => load
+      </h3>
+
+      <article style="flex-direction: column">
+        <div>
+          <h3>DOMContentLoaded</h3>
+          <p>
+            : HTML 문서 파싱을 완료하고 DOM 객체를 생성했을때 document 객체 에서
+            발생하는 이벤트이다.
+          </p>
+          <section id="domloaded"></section>
+        </div>
+        <div>
+          <h3>readystate</h3>
+          <p>- loading : DOM을 로딩하고 있을 때</p>
+          <p>
+            - interactive : DOM 로드를 완료하고, 문서가 parsed 상태이지만,
+            스크립트, 이미지, 스타일시트 등의 하위 리소스는 여전히 로드 중인
+            상태 + DOMContentLoaded가 곧 발생함을 의미하는 상태 => 실제로
+            DOMContentLoaded 이벤트 핸들러에서 readyState는 'interactive' 상태임
+          </p>
+          <p>
+            - complete : DOM과 하위 리소스 모두를 로딩한 상태로 곧 load 이벤트가
+            발생함.
+          </p>
+          <section id="readystate"></section>
+        </div>
+        <div>
+          <h3>load</h3>
+          <p>
+            : HTML 문서 파싱을 완료하고 DOM 객체를 생성했을때 document 객체 에서
+            발생하는 이벤트이다.
+          </p>
+          <section id="load"></section>
+        </div>
+      </article>
       <h1>마우스 이벤트</h1>
       <article>
         <section>
@@ -111,7 +150,7 @@
           </section>
         </div>
       </article>
-      <h1>포커스 이벤트</h1>
+      <h1>Input 관련 이벤트</h1>
       <article>
         <section>
           <h2>focusin/focusout</h2>
@@ -145,7 +184,59 @@
           >> log
           <div class="result" id="focus-result"></div>
         </section>
+        <section>
+          <h2>input</h2>
+          <p>요소의 값이 변경될 때마다 발생하며, 이벤트 버블링이 일어난다.</p>
+          <div class="parent_div" id="input-parent-div">
+            parent div
+            <div class="out_div" id="input-out-div">
+              child div
+              <input type="text" id="inputInput" />
+            </div>
+          </div>
+          <div id="input-validation-msg"></div>
+          <button class="clearbtn" id="input-clearbtn">clear</button>
+          <br />
+          >> log
+          <div class="result" id="input-result"></div>
+        </section>
+        <section>
+          <h2>change</h2>
+          <p>요소의 값이 변경되고, focusout or blur 처리가 돼야 발생한다.</p>
+          <p>
+            React에서 onChange 를 프로퍼티 방식처럼 JSX에서 쓰고 있는데, 사실
+            이건 change 이벤트보다는 input 이벤트 동작과 일치한다.
+          </p>
+          <p>input과 마찬가지로 이벤트 버블링이 일어난다.</p>
+          <div class="parent_div" id="change-parent-div">
+            parent div
+            <div class="out_div" id="change-out-div">
+              child div
+              <input type="text" id="changeInput" />
+            </div>
+          </div>
+          <div id="change-validation-msg"></div>
+          <button class="clearbtn" id="change-clearbtn">clear</button>
+          <br />
+          >> log
+          <div class="result" id="change-result"></div>
+        </section>
       </article>
+      <h1>Form 관련 이벤트</h1>
+      <form id="form">
+        <label>Test field: <input type="text" /></label>
+        <br /><br />
+        <button type="reset">Reset form</button>
+        <button type="submit" id="submit-btn">Submit form</button>
+      </form>
+      <p id="log1"></p>
+      <p id="log2"></p>
+      <h1>Resize & Scroll Event</h1>
+      <button id="resizeBtn">Resize 이벤트 켜기</button>
+      <div>
+        <button id="scrollBtn">Scroll 이벤트 켜기</button>
+        <div id="scrollEnergy"></div>
+      </div>
     </div>
     <script type="module" src="/main.js"></script>
   </body>
