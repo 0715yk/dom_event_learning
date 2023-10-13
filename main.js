@@ -505,3 +505,31 @@ scrollBtn.addEventListener("click", function () {
     ? "Scroll 이벤트 Status : On "
     : "Scroll 이벤트 Status : Off";
 });
+
+const idInputElement = document.getElementById("idInput");
+idInputElement.onkeydown = (e) => {
+  if (e.key === "Enter") {
+    idInputElement.blur();
+  }
+};
+
+const checkInputBox = document.getElementById("checkInputBox");
+
+const clickTestBtn = document.getElementById("clickTest");
+clickTestBtn.onclick = (e) => {
+  checkInputBox.dispatchEvent(new MouseEvent("click"));
+};
+
+const beeImg = document.getElementById("bee");
+
+document.addEventListener("mouseenter", function (e) {
+  beeImg.style.display = "inline-block";
+});
+
+document.addEventListener("mousemove", function (e) {
+  beeImg.style.transform = `translate3d(calc(${e.pageX}px + 50%), calc(${e.pageY}px +  50%), 0)`;
+});
+
+document.addEventListener("mouseleave", function (e) {
+  beeImg.style.display = "none";
+});
