@@ -8,12 +8,11 @@
     <title>Vite App</title>
   </head>
   <body>
-    <img src="public\BEE.jpg" id="bee" />
     <div id="app">
       <h1>DOM 문서 + a 어디쯤 왔니?</h1>
       <h3>
-        : 순서상 `readyState : interactive` => DOMContentLoaded => `readyState :
-        complete` => load
+        : 순서상 `DOMContentLoaded && readyState : interactive` => `readyState :
+        complete && load`
       </h3>
 
       <article style="flex-direction: column">
@@ -43,8 +42,8 @@
         <div>
           <h3>load</h3>
           <p>
-            : HTML 문서 파싱을 완료하고 DOM 객체를 생성했을때 document 객체 에서
-            발생하는 이벤트이다.
+            : DOMContenLoaded 이벤트 발생후 모든 리소스 로딩이 완료됐을 때
+            발생(주로 window 객체에서 발생한다).
           </p>
           <section id="load"></section>
         </div>
@@ -238,10 +237,14 @@
         <button id="scrollBtn">Scroll 이벤트 켜기</button>
         <div id="scrollEnergy"></div>
       </div>
-      <h1>KeyBoard Focusin * Focusout</h1>
+      <h1>Blur and Custom Click Event</h1>
       id : <input type="text" id="idInput" />
       <button id="clickTest">Click</button>
       <input type="checkbox" id="checkInputBox" />
+      <div>
+        clickTestBtn.onclick = (e) => { checkInputBox.dispatchEvent(new
+        MouseEvent("click")); };
+      </div>
     </div>
     <script type="module" src="/main.js"></script>
   </body>

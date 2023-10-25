@@ -520,16 +520,16 @@ clickTestBtn.onclick = (e) => {
   checkInputBox.dispatchEvent(new MouseEvent("click"));
 };
 
-const beeImg = document.getElementById("bee");
+// const beeImg = document.getElementById("bee");
 
-document.addEventListener("mouseenter", function (e) {
-  beeImg.style.display = "inline-block";
-});
+// document.addEventListener("mouseenter", function (e) {
+//   beeImg.style.display = "inline-block";
+// });
 
-document.addEventListener("mousemove", function (e) {
-  beeImg.style.transform = `translate3d(calc(${e.pageX}px + 50%), calc(${e.pageY}px +  50%), 0)`;
-});
+// document.addEventListener("mousemove", function (e) {
+//   beeImg.style.transform = `translate3d(calc(${e.pageX}px + 50%), calc(${e.pageY}px +  50%), 0)`;
+// });
 
-document.addEventListener("mouseleave", function (e) {
-  beeImg.style.display = "none";
-});
+// document.addEventListener("mouseleave", function (e) {
+//   beeImg.style.display = "none";
+// });
